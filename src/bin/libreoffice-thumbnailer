@@ -29,6 +29,6 @@ esac
 if [ "${TMPDIR}/${THUMBFILE}" ]; then
     MIMETYPE=$( mimetype "$1" | sed s/.*\:\ // | sed s/\\\//-/ )
     ICONFILE="$(gtk_find_icon ${MIMETYPE} ${ICONSIZE})"
-    convert "${TMPDIR}/${THUMBFILE}" -resize "x${SIZE}" -background none -gravity center -extent "${SIZE}x${SIZE}" "${ICONFILE}"  -gravity SouthEast -composite "${OUTFILE}"
+    convert "${TMPDIR}/${THUMBFILE}" -resize "${SIZE}x${SIZE}" -background none -gravity center -extent "${SIZE}x${SIZE}" "${ICONFILE}"  -gravity SouthEast -composite "${OUTFILE}"
 fi
 rm -R "${TMPDIR}"
