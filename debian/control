@@ -4,5 +4,5 @@ Maintainer: Livanh <livanh@bulletmail.org>
 Depends: unzip, imagemagick, python-gtk2
 Priority: optional
 Version: 0.1
-Description: Thumbnailer for Libreoffice dcuments 
+Description: Thumbnailer for Libreoffice documents 
  This script creates thumbnails for Libreoffice documents in PCManFM and other file managers.
