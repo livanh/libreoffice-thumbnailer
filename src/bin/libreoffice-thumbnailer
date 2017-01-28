@@ -9,7 +9,7 @@ if [ -z "${1:-}" ]; then exit 0; fi
 INFILE="$1"
 OUTFILE="$2"
 SIZE="$3"
-TMPDIR="$(mktemp -d -t .libreoffice-thumbnailer-XXX)"
+TMPDIR="$(mktemp -d -t .libreoffice-thumbnailer-XXXXXX)"
 THUMBFILE="Thumbnails/thumbnail.png"
 
 unzip "${INFILE}" "${THUMBFILE}" -d "${TMPDIR}"
