@@ -1,34 +1,17 @@
 #!/bin/bash
 IFS=$'\n\t'
 
-function gtk_find_icon() {
-	python -c "import gtk; print gtk.icon_theme_get_default().lookup_icon(\"$1\",$2,0).get_filename()"
-}
-
 if [ -z "${1:-}" ]; then exit 0; fi
+
 INFILE="$1"
 OUTFILE="$2"
 SIZE="$3"
-TMPDIR="$(mktemp -d -t .libreoffice-thumbnailer-XXXXXX)"
+TMP_DIR="$(mktemp -d -t .libreoffice-thumbnailer-XXXXXX)"
 THUMBFILE="Thumbnails/thumbnail.png"
 
-unzip "${INFILE}" "${THUMBFILE}" -d "${TMPDIR}"
+unzip "${INFILE}" "${THUMBFILE}" -d "${TMP_DIR}"
 
-
-case $(echo $SIZE | cut -d x -f 1 ) in
-  256)	ICONSIZE=128;;
-  192)	ICONSIZE=96;;
-  128)	ICONSIZE=64;;
-   96)	ICONSIZE=48;;
-   72)	ICONSIZE=36;;
-   64)	ICONSIZE=32;;
-   48)	ICONSIZE=24;;
-    *)	ICONSIZE=16;;
-esac
-
-if [ "${TMPDIR}/${THUMBFILE}" ]; then
-    MIMETYPE=$( mimetype "$1" | sed s/.*\:\ // | sed s/\\\//-/ )
-    ICONFILE="$(gtk_find_icon ${MIMETYPE} ${ICONSIZE})"
-    convert "${TMPDIR}/${THUMBFILE}" -resize "${SIZE}x${SIZE}" -background none -gravity center -extent "${SIZE}x${SIZE}" "${ICONFILE}"  -gravity SouthEast -composite "${OUTFILE}"
+if [ "${TMP_DIR}/${THUMBFILE}" ]; then
+    convert "${TMP_DIR}/${THUMBFILE}" -resize "${SIZE}x${SIZE}" "${OUTFILE}"
 fi
-rm -R "${TMPDIR}"
+rm -R "${TMP_DIR}"

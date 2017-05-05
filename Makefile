@@ -1,7 +1,7 @@
 PREFIX=/usr/local
 
 PACKAGE_NAME=libreoffice-thumbnailer
-PACKAGE_VERSION=0.1
+PACKAGE_VERSION=0.2
 
 install:
 	install -m 755 src/bin/libreoffice-thumbnailer $(PREFIX)/bin

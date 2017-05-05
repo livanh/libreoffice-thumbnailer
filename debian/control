@@ -1,8 +1,8 @@
 Package: libreoffice-thumbnailer
 Architecture: all
 Maintainer: Livanh <livanh@bulletmail.org>
-Depends: unzip, imagemagick, python-gtk2
+Depends: unzip, imagemagick
 Priority: optional
-Version: 0.1
+Version: 0.2
 Description: Thumbnailer for Libreoffice documents 
  This script creates thumbnails for Libreoffice documents in PCManFM and other file managers.
